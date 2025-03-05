@@ -6,36 +6,39 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed w-full z-50 bg-gray-900/80 backdrop-blur-md border-b border-gray-800">
+    <nav className="fixed w-full z-50 bg-black backdrop-blur-lg border-b border-gray-800 shadow-xl">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          <Link to="/" className="text-2xl font-bold text-red-400 hover:text-red-300 transition-colors">
+          <Link 
+            to="/" 
+            className="text-2xl font-bold bg-gradient-to-r from-red-400 to-orange-300 bg-clip-text text-transparent hover:from-red-300 hover:to-orange-200 transition-all"
+          >
             DesignStudio
           </Link>
 
           <div className="hidden md:flex space-x-8">
             <Link 
               to="/contact" 
-              className="text-gray-300 hover:text-red-400 transition-colors duration-200"
+              className="text-2xl font-bold bg-gradient-to-r from-red-400 to-orange-300 bg-clip-text text-transparent hover:from-red-300 hover:to-orange-200 transition-all"
             >
               Contatti
             </Link>
           </div>
 
           <button
-            className="md:hidden text-gray-300 hover:text-red-400"
+            className="md:hidden text-gray-300 hover:text-red-400 p-1 rounded-lg hover:bg-gray-900 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
           </button>
         </div>
 
         {isOpen && (
-          <div className="md:hidden bg-gray-800/95 mt-2 rounded-lg">
-            <div className="px-2 pt-2 pb-3 space-y-1">
+          <div className="md:hidden bg-black mt-2 rounded-lg border border-gray-800">
+            <div className="px-2 pt-2 pb-3 space-y-2">
               <Link
                 to="/contact"
-                className="block px-3 py-2 text-gray-300 hover:text-red-400 hover:bg-gray-700/50 rounded-md transition-colors"
+                className="block text-2xl font-bold bg-gradient-to-r from-red-400 to-orange-300 bg-clip-text text-transparent hover:from-red-300 hover:to-orange-200 transition-all px-4 py-3"
                 onClick={() => setIsOpen(false)}
               >
                 Contatti
