@@ -6,7 +6,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <nav className="navbar navbar-expand-md navbar-dark bg-[#111] fixed-top">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <Link 

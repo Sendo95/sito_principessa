@@ -57,9 +57,6 @@ export function ContactSection() {
         throw new Error('Errore durante l’invio del messaggio');
       }
 
-      const data = await response.json();
-      console.log('Messaggio inviato con successo:', data);
-
       setName('');
       setEmail('');
       setMessage('');
@@ -70,132 +67,56 @@ export function ContactSection() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-r from-gray-100 to-white">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-12 text-gray-800">
-            Contattaci
-          </h2>
+    <section className="py-20 bg-white text-black">
+      <div className="container mx-auto px-4 py-16 relative z-10">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           
-          <div className="bg-white rounded-xl shadow-xl p-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
-              <div>
-                <h3 className="text-2xl font-semibold mb-4 text-gray-700">
-                  Informazioni di Contatto
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex items-center">
-                    <Mail className="h-6 w-6 text-indigo-500 mr-3" />
-                    <a
-                      href="mailto:mirco@mazzolena.com"
-                      className="text-gray-600 hover:text-indigo-500 transition-colors"
-                    >
-                      mirco@mazzolena.com
-                    </a>
-                  </div>
-                  <div className="flex items-center">
-                    <Phone className="h-6 w-6 text-indigo-500 mr-3" />
-                    <a
-                      href="tel:+393287147717"
-                      className="text-gray-600 hover:text-indigo-500 transition-colors"
-                    >
-                      328 714 7717
-                    </a>
-                  </div>
-                </div>
+          <div className="bg-white rounded-lg p-8 shadow-lg">
+            <h3 className="text-3xl font-semibold mb-6">Informazioni di Contatto</h3>
+            <div className="space-y-6">
+              <div className="flex items-center">
+                <Mail className="text-[#ff6b6b] mr-3" />
+                <a href="mailto:mirco@mazzolena.com" className="text-black-300 hover:text-[#ff6b6b] transition-colors">mirco@mazzolena.com</a>
               </div>
-              
+              <div className="flex items-center">
+                <Phone className="text-[#ff6b6b] mr-3" />
+                <a href="tel:+393287147717" className="text-black-300 hover:text-[#ff6b6b] transition-colors">328 714 7717</a>
+              </div>
               <div>
-                <h3 className="text-2xl font-semibold mb-4 text-gray-700">
-                  Orari di Ricevimento
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <h4 className="text-xl font-semibold mb-2">Orari di Ricevimento</h4>
+                <p className="text-black-300">
                   Lunedì - Venerdì: 9:00 - 18:00<br />
                   Sabato - Domenica: Su appuntamento
                 </p>
               </div>
             </div>
+          </div>
 
+          <div className="bg-white rounded-lg p-8 shadow-lg">
+            <h3 className="text-3xl font-semibold mb-6">Contattaci</h3>
             <form className="space-y-6" onSubmit={handleSubmit}>
               {projectReference && (
-                <input 
-                  type="hidden" 
-                  name="project_reference" 
-                  value={projectReference} 
-                />
+                <input type="hidden" name="project_reference" value={projectReference} />
               )}
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Nome Completo
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Nome Cognome"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
-                  />
-                  {errors.name && (
-                    <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-                  )}
+                  <label className="block text-sm font-medium mb-2">Nome Completo</label>
+                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nome Cognome" className="w-full px-4 py-3 border border-black-600 rounded-lg bg-black-800 text-white" />
+                  {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
                 </div>
-
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Indirizzo Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="nome@esempio.com"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
-                  />
-                  {errors.email && (
-                    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                  )}
+                  <label className="block text-sm font-medium mb-2">Indirizzo Email</label>
+                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="nome@esempio.com" className="w-full px-4 py-3 border border-black-600 rounded-lg bg-black-800 text-white" />
+                  {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Il Tuo Messaggio</label>
+                  <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={5} placeholder="Descrivi il tuo progetto, le tue esigenze o qualsiasi informazione rilevante..." className="w-full px-4 py-3 border border-black-600 rounded-lg bg-black-800 text-white"></textarea>
+                  {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
                 </div>
               </div>
-              
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Il Tuo Messaggio
-                </label>
-                <textarea
-                  id="message"
-                  rows={5}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Descrivi il tuo progetto, le tue esigenze o qualsiasi informazione rilevante..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
-                ></textarea>
-                {errors.message && (
-                  <p className="text-red-500 text-sm mt-1">{errors.message}</p>
-                )}
-              </div>
-
               <div className="text-center">
-                <p className="text-sm text-gray-500 mb-6 italic">
-                  Ti risponderemo entro 24 ore dal ricevimento del messaggio
-                </p>
-                
-                <Button
-                  type="submit"
-                  className="bg-indigo-600 hover:bg-indigo-700 px-10 py-4 text-lg font-medium rounded-lg transition"
-                >
+                <Button type="submit" className="bg-[#ff6b6b] text-white px-8 py-3 rounded-full hover:bg-[#ff5252] transition-colors">
                   <Send className="mr-2 h-5 w-5" />
                   Invia Richiesta
                 </Button>
