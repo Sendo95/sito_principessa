@@ -1,73 +1,83 @@
+from typing import Optional
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import List, Optional
+import smtplib
+from email.message import EmailMessage
+import os
+from dotenv import load_dotenv
 import uvicorn
+
+# Carica le variabili d'ambiente dal file .env
+load_dotenv()
 
 app = FastAPI(title="DesignStudio API")
 
-# Enable CORS
+# Configurazione SMTP
+SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.gmail.com")
+SMTP_PORT = int(os.getenv("SMTP_PORT", 587))
+SMTP_USERNAME = os.getenv("SMTP_USERNAME")
+SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
+RECIPIENT_EMAIL = "sirnishid@gmail.com"
+
+class ContactRequest(BaseModel):
+    name: str
+    email: str
+    message: str
+    project_reference: Optional[str] = None
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Frontend URL
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Models
-class Product(BaseModel):
-    id: int
-    name: str
-    description: str
-    price: float
-    category: str
-    images: List[str]
-    details: dict
+def send_email(contact: ContactRequest):
+    """Funzione per inviare l'email tramite SMTP"""
+    msg = EmailMessage()
+    msg["Subject"] = f"Nuovo contatto da {contact.name}"
+    msg["From"] = SMTP_USERNAME
+    msg["To"] = RECIPIENT_EMAIL
 
-class ContactForm(BaseModel):
-    name: str
-    email: str
-    message: str
-    budget: Optional[float]
-    deadline: Optional[str]
+    body = f"""
+    Nuova richiesta di contatto:
+    
+    Nome: {contact.name}
+    Email: {contact.email}
+    {f"Riferimento progetto: {contact.project_reference}" if contact.project_reference else ""}
+    Messaggio:
+    {contact.message}
+    """
 
-# Sample data (replace with database later)
-products = [
-    {
-        "id": 1,
-        "name": "Instagram Stories Template Pack",
-        "description": "10 template professionali per le tue storie Instagram",
-        "price": 49.99,
-        "category": "digital_products",
-        "images": ["https://images.unsplash.com/photo-1611162617474-5b21e879e113"],
-        "details": {
-            "format": "PSD, AI",
-            "files": 10,
-            "license": "Commercial use"
-        }
-    }
-]
+    msg.set_content(body)
 
-@app.get("/")
-def read_root():
-    return {"message": "Welcome to DesignStudio API"}
+    try:
+        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
+            server.starttls()
+            server.login(SMTP_USERNAME, SMTP_PASSWORD)
+            server.send_message(msg)
+        return True
+    except Exception as e:
+        print(f"Errore nell'invio dell'email: {str(e)}")
+        return False
 
-@app.get("/products")
-def get_products():
-    return products
-
-@app.get("/products/{product_id}")
-def get_product(product_id: int):
-    product = next((p for p in products if p["id"] == product_id), None)
-    if not product:
-        raise HTTPException(status_code=404, detail="Product not found")
-    return product
-
-@app.post("/contact")
-def submit_contact(form: ContactForm):
-    # Here you would typically save to database and send email
-    return {"message": "Form submitted successfully"}
+@app.post("/api/contact")
+async def create_contact(contact: ContactRequest):
+    try:
+        if not send_email(contact):
+            raise HTTPException(
+                status_code=500, 
+                detail="Errore durante l'invio dell'email"
+            )
+            
+        return {"message": "Email inviata con successo"}
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, 
+            detail=f"Errore interno del server: {str(e)}"
+        )
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
