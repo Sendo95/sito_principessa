@@ -6,12 +6,12 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed w-full z-50 bg-dark/80 backdrop-blur-lg border-b border-dark-200">
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <Link 
             to="/" 
-            className="text-2xl font-bold bg-gradient-to-r from-accent to-accent-hover bg-clip-text text-transparent hover:opacity-80 transition-all"
+            className="text-[#ff6b6b] text-xl font-bold hover:text-[#ff5252]"
           >
             DesignStudio
           </Link>
@@ -19,7 +19,7 @@ export function Navbar() {
           <div className="hidden md:flex space-x-8">
             <Link 
               to="/contact" 
-              className="text-gray-300 hover:text-white transition-colors"
+              className="text-white hover:text-[#ff6b6b]"
             >
               Contatti
             </Link>

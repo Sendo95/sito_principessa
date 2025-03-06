@@ -3,45 +3,58 @@ import { Link } from 'react-router-dom';
 
 export function Footer() {
   return (
-    <footer className="bg-dark-100 text-gray-300 py-12 border-t border-dark-200">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-xl font-bold mb-4 text-white">DesignStudio</h3>
-            <p className="text-gray-400">
+    <footer className="bg-[#111] text-white py-12">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Main Content */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          {/* Brand Section */}
+          <div className="text-center md:text-left">
+            <h3 className="text-[#ff6b6b] font-bold text-lg mb-4">DesignStudio</h3>
+            <p className="text-gray-400 text-sm">
               Design unici fatti a mano per il tuo brand
             </p>
           </div>
-          <div>
-            <h3 className="text-xl font-bold mb-4 text-white">Contatti</h3>
-            <div className="space-y-4">
-              <a 
-                href="mailto:mirco@mazzolena.com" 
-                className="flex items-center text-gray-400 hover:text-accent transition-colors"
+
+          {/* Contacts Section */}
+          <div className="text-center md:text-left">
+            <h3 className="text-white font-bold text-lg mb-4">Contatti</h3>
+            <div className="space-y-3">
+              <a
+                href="mailto:mirco@mazzolena.com"
+                className="flex items-center justify-center md:justify-start text-gray-400 hover:text-[#ff6b6b] transition-colors"
               >
-                <Mail className="h-5 w-5 mr-2" />
+                <Mail className="mr-2 h-5 w-5" />
                 mirco@mazzolena.com
               </a>
-              <a 
-                href="tel:+393287147717" 
-                className="flex items-center text-gray-400 hover:text-accent transition-colors"
+              <a
+                href="tel:+393287147717"
+                className="flex items-center justify-center md:justify-start text-gray-400 hover:text-[#ff6b6b] transition-colors"
               >
-                <Phone className="h-5 w-5 mr-2" />
+                <Phone className="mr-2 h-5 w-5" />
                 328 714 7717
               </a>
             </div>
           </div>
-          <div>
-            <h3 className="text-xl font-bold mb-4 text-white">Menu</h3>
-            <nav className="space-y-2">
-              <Link to="/contact" className="block text-gray-400 hover:text-accent transition-colors">
+
+          {/* Menu Section */}
+          <div className="text-center md:text-left">
+            <h3 className="text-white font-bold text-lg mb-4">Menu</h3>
+            <nav className="space-y-3">
+              <Link
+                to="/contact"
+                className="text-gray-400 hover:text-[#ff6b6b] transition-colors block"
+              >
                 Contatti
               </Link>
             </nav>
           </div>
         </div>
-        <div className="mt-12 pt-8 border-t border-dark-200 text-center text-gray-400">
-          <p>© {new Date().getFullYear()} Mirco Mazzolena. Tutti i diritti riservati.</p>
+
+        {/* Copyright Section */}
+        <div className="pt-8 mt-8 border-t border-gray-800">
+          <p className="text-gray-400 text-sm text-center">
+            © {new Date().getFullYear()} Mirco Mazzolena. Tutti i diritti riservati.
+          </p>
         </div>
       </div>
     </footer>
