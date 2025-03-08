@@ -67,9 +67,9 @@ export function ContactSection() {
   };
 
   return (
-    <section className="py-20 bg-white text-black">
-      <div className="container mx-auto px-4 py-16 relative z-10">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <section className="h-screen w-screen flex items-center justify-center bg-white text-black">
+      <div className="container h-full w-full px-4 py-16 relative z-10 flex items-center justify-center">
+        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           
           <div className="bg-white rounded-lg p-8 shadow-lg">
             <h3 className="text-3xl font-semibold mb-6">Informazioni di Contatto</h3>
@@ -101,17 +101,17 @@ export function ContactSection() {
               <div className="grid grid-cols-1 gap-6">
                 <div>
                   <label className="block text-sm font-medium mb-2">Nome Completo</label>
-                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nome Cognome" className="w-full px-4 py-3 border border-black-600 rounded-lg bg-black-800 text-white" />
+                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nome Cognome" className="w-full px-4 py-3 border border-black-600 rounded-lg bg-white text-black" />
                   {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2">Indirizzo Email</label>
-                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="nome@esempio.com" className="w-full px-4 py-3 border border-black-600 rounded-lg bg-black-800 text-white" />
+                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="nome@esempio.com" className="w-full px-4 py-3 border border-black-600 rounded-lg bg-white text-black" />
                   {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2">Il Tuo Messaggio</label>
-                  <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={5} placeholder="Descrivi il tuo progetto, le tue esigenze o qualsiasi informazione rilevante..." className="w-full px-4 py-3 border border-black-600 rounded-lg bg-black-800 text-white"></textarea>
+                  <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={5} placeholder="Descrivi il tuo progetto..." className="w-full px-4 py-3 border border-black-600 rounded-lg bg-white text-black"></textarea>
                   {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
                 </div>
               </div>

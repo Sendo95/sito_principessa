@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-dark">
-      <div className="absolute inset-0 bg-gradient-radial from-dark-100 to-dark opacity-70"></div>
+      <div className="absolute inset-0 bg-gradient-radial from-dark-100 to-dark opacity-80"></div>
       
       <div className="container mx-auto px-4 py-16 relative z-10">
         <motion.div
