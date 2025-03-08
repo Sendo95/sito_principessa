@@ -67,62 +67,59 @@ export function ContactSection() {
   };
 
   return (
-    <section className="h-screen w-screen flex items-center justify-center bg-white text-black">
+    <section className="h-screen w-screen flex items-center justify-center bg-dark text-white">
       <div className="container h-full w-full px-4 py-16 relative z-10 flex items-center justify-center">
-        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="w-full max-w-4xl bg-dark-100 rounded-lg p-8 shadow-lg">
+          <h3 className="text-3xl font-semibold mb-6 text-center">Contattaci</h3>
           
-          <div className="bg-white rounded-lg p-8 shadow-lg">
-            <h3 className="text-3xl font-semibold mb-6">Informazioni di Contatto</h3>
-            <div className="space-y-6">
-              <div className="flex items-center">
-                <Mail className="text-[#ff6b6b] mr-3" />
-                <a href="mailto:mirco@mazzolena.com" className="text-black-300 hover:text-[#ff6b6b] transition-colors">mirco@mazzolena.com</a>
-              </div>
-              <div className="flex items-center">
-                <Phone className="text-[#ff6b6b] mr-3" />
-                <a href="tel:+393287147717" className="text-black-300 hover:text-[#ff6b6b] transition-colors">328 714 7717</a>
-              </div>
-              <div>
-                <h4 className="text-xl font-semibold mb-2">Orari di Ricevimento</h4>
-                <p className="text-black-300">
-                  Lunedì - Venerdì: 9:00 - 18:00<br />
-                  Sabato - Domenica: Su appuntamento
-                </p>
-              </div>
+          <div className="space-y-6 mb-8">
+            <div className="flex items-center">
+              <Mail className="text-[#ff6b6b] mr-3" />
+              <a href="mailto:mirco@mazzolena.com" className="text-gray-300 hover:text-[#ff6b6b] transition-colors">mirco@mazzolena.com</a>
+            </div>
+            <div className="flex items-center">
+              <Phone className="text-[#ff6b6b] mr-3" />
+              <a href="tel:+393287147717" className="text-gray-300 hover:text-[#ff6b6b] transition-colors">328 714 7717</a>
+            </div>
+            <div>
+              <h4 className="text-xl font-semibold mb-2">Orari di Ricevimento</h4>
+              <p className="text-gray-300">
+                Lunedì - Venerdì: 9:00 - 18:00<br />
+                Sabato - Domenica: Su appuntamento
+              </p>
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-8 shadow-lg">
-            <h3 className="text-3xl font-semibold mb-6">Contattaci</h3>
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              {projectReference && (
-                <input type="hidden" name="project_reference" value={projectReference} />
-              )}
-              <div className="grid grid-cols-1 gap-6">
-                <div>
-                  <label className="block text-sm font-medium mb-2">Nome Completo</label>
-                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nome Cognome" className="w-full px-4 py-3 border border-black-600 rounded-lg bg-white text-black" />
-                  {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Indirizzo Email</label>
-                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="nome@esempio.com" className="w-full px-4 py-3 border border-black-600 rounded-lg bg-white text-black" />
-                  {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Il Tuo Messaggio</label>
-                  <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={5} placeholder="Descrivi il tuo progetto..." className="w-full px-4 py-3 border border-black-600 rounded-lg bg-white text-black"></textarea>
-                  {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
-                </div>
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            {projectReference && (
+              <input type="hidden" name="project_reference" value={projectReference} />
+            )}
+            <div className="grid grid-cols-1 gap-6">
+              <div>
+                <label className="block text-sm font-medium mb-2">Nome Completo</label>
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nome Cognome" className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-dark-200 text-white" />
+                {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
               </div>
-              <div className="text-center">
-                <Button type="submit" className="bg-[#ff6b6b] text-white px-8 py-3 rounded-full hover:bg-[#ff5252] transition-colors">
-                  <Send className="mr-2 h-5 w-5" />
-                  Invia Richiesta
-                </Button>
+              <div>
+                <label className="block text-sm font-medium mb-2">Indirizzo Email</label>
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="nome@esempio.com" className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-dark-200 text-white" />
+                {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
               </div>
-            </form>
-          </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Il Tuo Messaggio</label>
+                <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={5} placeholder="Descrivi il tuo progetto: il tipo di design desiderato, colori preferiti, obiettivi e qualsiasi altra informazione utile..." className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-dark-200 text-white"></textarea>
+                {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
+              </div>
+            </div>
+            <div className="text-center">
+              <Button type="submit" className="bg-[#ff6b6b] text-white px-8 py-3 rounded-full hover:bg-[#ff5252] transition-colors">
+                <Send className="mr-2 h-5 w-5" />
+                Invia Richiesta
+              </Button>
+            </div>
+          </form>
+          
+          <p className="text-center text-gray-400 mt-6">Rispondiamo a tutti i messaggi per email entro 24 ore.</p>
         </div>
       </div>
     </section>
