@@ -7,9 +7,11 @@ const works = [
   {
     id: 1,
     images: [
-      'https://images.unsplash.com/photo-1621112904887-419379ce6824',
-      'https://images.unsplash.com/photo-1635405074683-96d6921a2a68',
-      'https://images.unsplash.com/photo-1614036634955-ae5e90f9b9eb'
+      '/immagini/case/ville/villa1.jpg',
+      '/immagini/case/ville/villa2.jpg',
+      '/immagini/case/ville/villa3.jpg',
+      '/immagini/case/appartamenti/appartamento1.jpg',
+      '/immagini/case/appartamenti/appartamento2.jpg',
     ]
   },
   {

@@ -12,13 +12,13 @@ type Work = {
   const works: Work[] = [
     {
       id: 1,
-      title: 'Logo per Bistrot Vegano',
-      thumbnail: 'https://images.unsplash.com/photo-1621112904887-419379ce6824'
+      title: 'Case',
+      thumbnail: './immagini/case/ville/villa1.jpg'
     },
     {
       id: 2,
       title: 'Immagini prova 1',
-      thumbnail: './immagini/occhio.jpg'
+      thumbnail: './immagini/prova1/occhi/occhio.jpg'
     }
   ];
 
