@@ -24,12 +24,12 @@ type Work = {
 
 export function WorksPage() {
   return (
-    <div className="min-h-screen pt-24 pb-16 bg-white">
+    <div className="min-h-screen pt-24 pb-16 bg-dark">
       <div className="container mx-auto px-4">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-display text-center">
+        <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-display text-center">
           I Nostri Lavori
         </h1>
-        <p className="text-xl text-gray-600 mb-12 text-center max-w-2xl mx-auto">
+        <p className="text-xl text-gray-400 mb-12 text-center max-w-2xl mx-auto">
           Una selezione dei nostri migliori progetti di design, 
           che mostrano la nostra passione per la creatività e l'attenzione ai dettagli.
         </p>

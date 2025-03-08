@@ -137,7 +137,7 @@ export function WorkDetail() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen pt-24 pb-16 bg-white"
+      className="min-h-screen pt-24 pb-16 bg-dark"
     >
       <div className="container mx-auto px-4">
         <Link to="/works" className="inline-flex items-center text-[#E74C3C] hover:underline mb-8">
