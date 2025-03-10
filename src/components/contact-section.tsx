@@ -9,12 +9,17 @@ function validateEmail(email: string): boolean {
 
 export function ContactSection() {
   const location = useLocation();
+  // Se è presente un riferimento dal location.state, lo usiamo come valore iniziale
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-  const [projectReference] = useState(location.state?.projectReference || '');
+  // In questo caso sovrascriviamo il projectReference con quello selezionato nel dropdown
+  const [selectedProject, setSelectedProject] = useState(location.state?.projectReference || '');
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [success, setSuccess] = useState(false);
+
+  // Definisci le opzioni del menu a tendina (i nomi delle cartelle all'interno di "immagini")
+  const projectFolders = ['case', 'prova1', 'Illustrazioni_vettoriali'];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,7 +48,7 @@ export function ContactSection() {
         name,
         email,
         message,
-        project_reference: projectReference
+        project_reference: selectedProject,
       };
 
       const response = await fetch('http://localhost:8000/api/contact', {
@@ -61,6 +66,7 @@ export function ContactSection() {
       setName('');
       setEmail('');
       setMessage('');
+      setSelectedProject('');
       setErrors({});
       setSuccess(true);
     } catch (error) {
@@ -77,11 +83,15 @@ export function ContactSection() {
           <div className="space-y-6 mb-8">
             <div className="flex items-center">
               <Mail className="text-[#ff6b6b] mr-3" />
-              <a href="mailto:mirco@mazzolena.com" className="text-gray-300 hover:text-[#ff6b6b] transition-colors">mirco@mazzolena.com</a>
+              <a href="mailto:mirco@mazzolena.com" className="text-gray-300 hover:text-[#ff6b6b] transition-colors">
+                mirco@mazzolena.com
+              </a>
             </div>
             <div className="flex items-center">
               <Phone className="text-[#ff6b6b] mr-3" />
-              <a href="tel:+393287147717" className="text-gray-300 hover:text-[#ff6b6b] transition-colors">328 714 7717</a>
+              <a href="tel:+393287147717" className="text-gray-300 hover:text-[#ff6b6b] transition-colors">
+                328 714 7717
+              </a>
             </div>
             <div>
               <h4 className="text-xl font-semibold mb-2">Orari di Ricevimento</h4>
@@ -93,9 +103,7 @@ export function ContactSection() {
           </div>
 
           <form className="space-y-6" onSubmit={handleSubmit}>
-            {projectReference && (
-              <input type="hidden" name="project_reference" value={projectReference} />
-            )}
+            {/* Campo Nome */}
             <div className="grid grid-cols-1 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2">Nome Completo</label>
@@ -108,6 +116,8 @@ export function ContactSection() {
                 />
                 {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
               </div>
+
+              {/* Campo Email */}
               <div>
                 <label className="block text-sm font-medium mb-2">Indirizzo Email</label>
                 <input 
@@ -119,6 +129,24 @@ export function ContactSection() {
                 />
                 {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
               </div>
+
+              {/* Menu a tendina per selezionare un progetto simile */}
+              <div>
+                <label className="block text-sm font-medium mb-2">Progetto Simile</label>
+                <select 
+                  value={selectedProject} 
+                  onChange={(e) => setSelectedProject(e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-dark-200 text-white"
+                >
+                  <option value="">-- Seleziona un progetto --</option>
+                  {projectFolders.map((project) => (
+                    <option key={project} value={project}>{project}</option>
+                  ))}
+                  <option value="Altro">Altro</option>
+                </select>
+              </div>
+
+              {/* Campo Messaggio */}
               <div>
                 <label className="block text-sm font-medium mb-2">Il Tuo Messaggio</label>
                 <textarea 
