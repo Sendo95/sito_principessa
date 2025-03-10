@@ -222,7 +222,7 @@ export function WorkDetail() {
                 <img
                   src={modalGroup.images[modalIndex]}
                   alt={`Immagine ingrandita ${modalIndex + 1}`}
-                  className="max-w-full max-h-screen rounded-lg"
+                  className="max-w-3/4 max-h-[60vh] rounded-lg"
                 />
 
                 {/* Frecce per scorrere nella modale (se più immagini) */}
