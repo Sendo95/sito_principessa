@@ -166,7 +166,10 @@ export function WorkDetail() {
                 <div key={group.key} className="relative">
                   {/* Miniatura visibile */}
                   <div
-                    className="aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                    className="aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-sm 
+                               hover:shadow-md transition-shadow cursor-pointer 
+                               transform hover:scale-105 transition-transform duration-300 
+                               hover:brightness-75"
                     onClick={() => openModal(group, currentIndex)}
                   >
                     <img
