@@ -19,6 +19,11 @@ type Work = {
       id: 2,
       title: 'Immagini prova 1',
       thumbnail: './immagini/prova1/occhi/occhio.jpg'
+    },
+    {
+      id: 3,
+      title: 'Illustrazioni vettoriali',
+      thumbnail: './immagini/Illustrazioni_vettoriali/Videogame/VIDEOGAME.jpeg'
     }
   ];
 

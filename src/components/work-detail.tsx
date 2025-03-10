@@ -22,6 +22,14 @@ const works = [
       '/immagini/prova1/occhi/destro.jpg',
       '/immagini/prova1/occhi/sinistro.jpg'
     ]
+  },
+  {
+    id: 3,
+    images: [
+      '/immagini/Illustrazioni_vettoriali/Videogame/VIDEOGAME.jpeg',
+      '/immagini/Illustrazioni_vettoriali/Papera/DUCK.jpeg',
+      '/immagini/Illustrazioni_vettoriali/Panda/PANDA.jpeg'
+    ]
   }
 ];
 
