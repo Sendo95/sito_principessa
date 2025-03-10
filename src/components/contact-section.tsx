@@ -14,6 +14,7 @@ export function ContactSection() {
   const [message, setMessage] = useState('');
   const [projectReference] = useState(location.state?.projectReference || '');
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -61,6 +62,7 @@ export function ContactSection() {
       setEmail('');
       setMessage('');
       setErrors({});
+      setSuccess(true);
     } catch (error) {
       console.error('Si è verificato un errore:', error);
     }
@@ -97,29 +99,58 @@ export function ContactSection() {
             <div className="grid grid-cols-1 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2">Nome Completo</label>
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nome Cognome" className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-dark-200 text-white" />
+                <input 
+                  type="text" 
+                  value={name} 
+                  onChange={(e) => setName(e.target.value)} 
+                  placeholder="Nome Cognome" 
+                  className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-dark-200 text-white" 
+                />
                 {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2">Indirizzo Email</label>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="nome@esempio.com" className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-dark-200 text-white" />
+                <input 
+                  type="email" 
+                  value={email} 
+                  onChange={(e) => setEmail(e.target.value)} 
+                  placeholder="nome@esempio.com" 
+                  className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-dark-200 text-white" 
+                />
                 {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2">Il Tuo Messaggio</label>
-                <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={5} placeholder="Descrivi il tuo progetto: il tipo di design desiderato, colori preferiti, obiettivi e qualsiasi altra informazione utile..." className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-dark-200 text-white"></textarea>
+                <textarea 
+                  value={message} 
+                  onChange={(e) => setMessage(e.target.value)} 
+                  rows={5} 
+                  placeholder="Descrivi il tuo progetto: il tipo di design desiderato, colori preferiti, obiettivi e qualsiasi altra informazione utile..." 
+                  className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-dark-200 text-white"
+                ></textarea>
                 {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
               </div>
             </div>
             <div className="text-center">
-              <Button type="submit" className="bg-[#ff6b6b] text-white px-8 py-3 rounded-full hover:bg-[#ff5252] transition-colors">
+              <Button 
+                type="submit" 
+                className="bg-[#ff6b6b] text-white px-8 py-3 rounded-full hover:bg-[#ff5252] transition-colors"
+              >
                 <Send className="mr-2 h-5 w-5" />
                 Invia Richiesta
               </Button>
             </div>
           </form>
           
-          <p className="text-center text-gray-400 mt-6">Rispondiamo a tutti i messaggi per email entro 24 ore.</p>
+          {success && (
+            <p className="text-center text-green-500 mt-4">
+              Messaggio inviato con successo!
+            </p>
+          )}
+          
+          <p className="text-center text-gray-400 mt-6">
+            Rispondiamo a tutti i messaggi per email entro 24 ore.
+          </p>
         </div>
       </div>
     </section>
