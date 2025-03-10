@@ -9,16 +9,17 @@ function validateEmail(email: string): boolean {
 
 export function ContactSection() {
   const location = useLocation();
-  // Se è presente un riferimento dal location.state, lo usiamo come valore iniziale
+  // projectReference viene preso da un'altra pagina e non viene modificato
+  const [projectReference] = useState(location.state?.projectReference || '');
+  // Stato per il progetto simile selezionato dal menu a tendina
+  const [similarProject, setSimilarProject] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-  // In questo caso sovrascriviamo il projectReference con quello selezionato nel dropdown
-  const [selectedProject, setSelectedProject] = useState(location.state?.projectReference || '');
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [success, setSuccess] = useState(false);
 
-  // Definisci le opzioni del menu a tendina (i nomi delle cartelle all'interno di "immagini")
+  // Opzioni del dropdown: nomi delle cartelle all'interno di "immagini"
   const projectFolders = ['case', 'prova1', 'Illustrazioni_vettoriali'];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,6 +38,9 @@ export function ContactSection() {
     if (!message.trim()) {
       newErrors.message = 'Il messaggio è obbligatorio';
     }
+    if (!similarProject) {
+      newErrors.similarProject = 'Seleziona un progetto simile';
+    }
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -48,7 +52,8 @@ export function ContactSection() {
         name,
         email,
         message,
-        project_reference: selectedProject,
+        project_reference: projectReference,
+        similar_project: similarProject,
       };
 
       const response = await fetch('http://localhost:8000/api/contact', {
@@ -63,10 +68,11 @@ export function ContactSection() {
         throw new Error('Errore durante l’invio del messaggio');
       }
 
+      // Reset dei campi
       setName('');
       setEmail('');
       setMessage('');
-      setSelectedProject('');
+      setSimilarProject('');
       setErrors({});
       setSuccess(true);
     } catch (error) {
@@ -103,8 +109,8 @@ export function ContactSection() {
           </div>
 
           <form className="space-y-6" onSubmit={handleSubmit}>
-            {/* Campo Nome */}
             <div className="grid grid-cols-1 gap-6">
+              {/* Campo Nome */}
               <div>
                 <label className="block text-sm font-medium mb-2">Nome Completo</label>
                 <input 
@@ -130,12 +136,12 @@ export function ContactSection() {
                 {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
               </div>
 
-              {/* Menu a tendina per selezionare un progetto simile */}
+              {/* Dropdown per Progetto Simile */}
               <div>
                 <label className="block text-sm font-medium mb-2">Progetto Simile</label>
                 <select 
-                  value={selectedProject} 
-                  onChange={(e) => setSelectedProject(e.target.value)}
+                  value={similarProject} 
+                  onChange={(e) => setSimilarProject(e.target.value)}
                   className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-dark-200 text-white"
                 >
                   <option value="">-- Seleziona un progetto --</option>
@@ -144,6 +150,7 @@ export function ContactSection() {
                   ))}
                   <option value="Altro">Altro</option>
                 </select>
+                {errors.similarProject && <p className="text-red-400 text-sm mt-1">{errors.similarProject}</p>}
               </div>
 
               {/* Campo Messaggio */}

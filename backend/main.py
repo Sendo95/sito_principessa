@@ -25,6 +25,7 @@ class ContactRequest(BaseModel):
     email: str
     message: str
     project_reference: Optional[str] = None
+    similar_project: str
 
 app.add_middleware(
     CORSMiddleware,
@@ -35,7 +36,7 @@ app.add_middleware(
 )
 
 def send_email(contact: ContactRequest):
-    """Funzione per inviare l'email tramite SMTP"""
+    """Invia l'email tramite SMTP includendo anche il progetto simile."""
     msg = EmailMessage()
     msg["Subject"] = f"Nuovo contatto da {contact.name}"
     msg["From"] = SMTP_USERNAME
@@ -47,10 +48,10 @@ def send_email(contact: ContactRequest):
     Nome: {contact.name}
     Email: {contact.email}
     {f"Riferimento progetto: {contact.project_reference}" if contact.project_reference else ""}
+    {f"Progetto simile: {contact.similar_project}" if contact.similar_project else ""}
     Messaggio:
     {contact.message}
     """
-
     msg.set_content(body)
 
     try:
@@ -71,7 +72,6 @@ async def create_contact(contact: ContactRequest):
                 status_code=500, 
                 detail="Errore durante l'invio dell'email"
             )
-            
         return {"message": "Email inviata con successo"}
     except Exception as e:
         raise HTTPException(
