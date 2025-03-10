@@ -13,7 +13,7 @@ export function Navbar() {
           className="flex items-center hover:opacity-80 transition-opacity -ml-12"
         >
           <img 
-            src="/immagini/Logo_sito.png" 
+            src="/immagini/logo_sito/Logo_sito.png" 
             alt="DesignStudio Logo"
             className="w-auto object-contain"
             style={{ 

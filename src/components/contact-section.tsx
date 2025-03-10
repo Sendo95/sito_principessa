@@ -6,6 +6,18 @@ import { useLocation } from 'react-router-dom';
 function validateEmail(email: string): boolean {
   return /\S+@\S+\.\S+/.test(email);
 }
+const imageModules = import.meta.glob('../../immagini/**/*.{jpg,jpeg,png}', { eager: true });
+console.log('imageModules:', imageModules);
+
+// Estrai i nomi delle cartelle
+const folderSet = new Set<string>();
+Object.keys(imageModules).forEach((key) => {
+  const parts = key.split('/');
+  if (parts[3] !== 'logo_sito') {
+    folderSet.add(parts[3]);
+  }
+});
+const dynamicProjectFolders = Array.from(folderSet);
 
 export function ContactSection() {
   const location = useLocation();
@@ -18,9 +30,6 @@ export function ContactSection() {
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [success, setSuccess] = useState(false);
-
-  // Opzioni del dropdown: nomi delle cartelle all'interno di "immagini"
-  const projectFolders = ['case', 'prova1', 'Illustrazioni_vettoriali'];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -136,7 +145,7 @@ export function ContactSection() {
                 {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
               </div>
 
-              {/* Dropdown per Progetto Simile */}
+              {/* Dropdown per Progetto Simile (popolato dinamicamente) */}
               <div>
                 <label className="block text-sm font-medium mb-2">Progetto Simile</label>
                 <select 
@@ -145,7 +154,7 @@ export function ContactSection() {
                   className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-dark-200 text-white"
                 >
                   <option value="">-- Seleziona un progetto --</option>
-                  {projectFolders.map((project) => (
+                  {dynamicProjectFolders.map((project) => (
                     <option key={project} value={project}>{project}</option>
                   ))}
                   <option value="Altro">Altro</option>
