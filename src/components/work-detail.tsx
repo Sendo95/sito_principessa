@@ -262,7 +262,7 @@ export function WorkDetail() {
                   projectReference: `Progetto #${id} - ${modalGroup?.key || 'Generico'}` 
                 }}
                 onClick={closeModal}
-                className="px-4 py-2 bg-black text-white rounded-md hover:bg-black/90 transition-colors"
+                className="bg-[#ff6b6b] text-white px-8 py-3 rounded-full hover:bg-[#ff5252] transition-colors"
               >
                 Richiedi un progetto simile
               </Link>
