@@ -9,7 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand Section */}
           <div className="text-center md:text-left">
-            <h3 className="text-[#ff6b6b] font-bold text-lg mb-4">DesignStudio</h3>
+            <h3 className="text-[#ff6b6b] font-bold text-lg mb-4">PrismaLab</h3>
             <p className="text-gray-400 text-sm">
               Design unici fatti a mano per il tuo brand
             </p>
@@ -20,18 +20,18 @@ export function Footer() {
             <h3 className="text-white font-bold text-lg mb-4">Contatti</h3>
             <div className="space-y-3">
               <a
-                href="mailto:mirco@mazzolena.com"
+                href="mailto:prismalabdesigner@gmail.com"
                 className="flex items-center justify-center md:justify-start text-gray-400 hover:text-[#ff6b6b] transition-colors"
               >
                 <Mail className="mr-2 h-5 w-5" />
-                mirco@mazzolena.com
+                prismalabdesigner@gmail.com
               </a>
               <a
                 href="tel:+393287147717"
                 className="flex items-center justify-center md:justify-start text-gray-400 hover:text-[#ff6b6b] transition-colors"
               >
                 <Phone className="mr-2 h-5 w-5" />
-                328 714 7717
+                3425848526
               </a>
             </div>
           </div>
@@ -53,7 +53,7 @@ export function Footer() {
         {/* Copyright Section */}
         <div className="pt-8 mt-8 border-t border-gray-800">
           <p className="text-gray-400 text-sm text-center">
-            © {new Date().getFullYear()} Mirco Mazzolena. Tutti i diritti riservati.
+            © {new Date().getFullYear()} Francesca Rossi. Tutti i diritti riservati.
           </p>
         </div>
       </div>
