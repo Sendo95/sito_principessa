@@ -28,7 +28,11 @@ const works = [
     images: [
       '/immagini/Illustrazioni_vettoriali/Videogame/VIDEOGAME.jpeg',
       '/immagini/Illustrazioni_vettoriali/Papera/DUCK.jpeg',
-      '/immagini/Illustrazioni_vettoriali/Panda/PANDA.jpeg'
+      '/immagini/Illustrazioni_vettoriali/Panda/PANDA.jpeg',
+      '/immagini/Illustrazioni_vettoriali/Brain/Brain.jpeg',
+      '/immagini/Illustrazioni_vettoriali/Computer/COMPUTER.jpeg',
+      '/immagini/Illustrazioni_vettoriali/Locandina_ramen/Locandina_ramen.jpeg',
+      '/immagini/Illustrazioni_vettoriali/Giradischi/GIRADISCHI.jpeg'
     ]
   }
 ];
